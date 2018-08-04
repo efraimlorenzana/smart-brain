@@ -1,0 +1,12 @@
+div#navigation {
+}
+div#navigation > p {
+	padding: 1em 2em;
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
+	color: white;
+}
+div#navigation > p:hover {
+	color: red;
+}

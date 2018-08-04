@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Courier,Monospace;
+  background: linear-gradient(to left, #72c2c5, #ce90d6);
+}
+
+.hs { /*header style*/
+	padding: 1em;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+.cis { /*custom input style*/
+	background-color: black;
+	color: white;
+}

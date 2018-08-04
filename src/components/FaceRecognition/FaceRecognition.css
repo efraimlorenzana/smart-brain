@@ -1,0 +1,9 @@
+div#FaceRecognition {
+	display: flex;
+	justify-content: center;
+}
+
+.bounding-box {
+	position: absolute;
+	border: 2px solid blue;
+}
