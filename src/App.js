@@ -32,7 +32,8 @@ class App extends Component {
       input: '',
       imgURL: '',
       box: {},
-      log: 'login'
+      log: 'login',
+      c_user: {}
     }
   }
   onInputChange = (e) => {
@@ -66,6 +67,10 @@ class App extends Component {
   onRouteChange = (route) => {
     this.setState({log: route})
   }
+
+  getCurrentUser = (user) => {
+    this.setState({c_user: user});
+  }
   render() {
     return (
       <div id="App">
@@ -74,13 +79,13 @@ class App extends Component {
           <div>
             <Navigation onRouteChange={this.onRouteChange} />
             <Logo />
-            <Rank />
+            <Rank user={this.state.c_user} />
             <ImageLink onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
             <FaceRecognition box={this.state.box} imgURL={this.state.imgURL} />
           </div>
           : ( this.state.log === 'register' ? 
               <Register onRouteChange={this.onRouteChange} /> : 
-              <Login onRouteChange={this.onRouteChange} />
+              <Login getCurrentUser={this.getCurrentUser} onRouteChange={this.onRouteChange} />
             )
       }
       </div>
