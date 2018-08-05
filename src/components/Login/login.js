@@ -18,7 +18,7 @@ const LoginForm = ({onRouteChange}) => {
 				  </div>
 				  	<div className='text-right'>
 					  <button onClick={() => onRouteChange('home')} type="submit" className="btn btn-primary mr-2">Login</button>
-					  <button className='btn btn-danger'>Register</button>
+					  <button onClick={() => onRouteChange('register')} className='btn btn-danger'>Register</button>
 					</div>
 				</form>
 			</div>

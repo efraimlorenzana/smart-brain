@@ -4,6 +4,7 @@ import Logo from './components/logo/logo';
 import Rank from './components/rank/rank';
 import ImageLink from './components/imagelink/imagelink';
 import Login from './components/Login/login';
+import Register from './components/Register/register';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Particles from 'react-particles-js';
 import './App.css';
@@ -69,8 +70,7 @@ class App extends Component {
     return (
       <div id="App">
         <Particles params={ particlesOption } className='particles' />
-        {this.state.log === 'login' ?
-          <Login onRouteChange={this.onRouteChange} /> :
+        {this.state.log === 'home' ?
           <div>
             <Navigation onRouteChange={this.onRouteChange} />
             <Logo />
@@ -78,6 +78,10 @@ class App extends Component {
             <ImageLink onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
             <FaceRecognition box={this.state.box} imgURL={this.state.imgURL} />
           </div>
+          : ( this.state.log === 'register' ? 
+              <Register onRouteChange={this.onRouteChange} /> : 
+              <Login onRouteChange={this.onRouteChange} />
+            )
       }
       </div>
     );
