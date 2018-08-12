@@ -9,6 +9,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Particles from 'react-particles-js';
 import './App.css';
 import Clarifai from 'clarifai';
+import Server from './server';
 
 const app = new Clarifai.App({
  apiKey: '313ad285e84a4eabacac2a38d44a48f5'
@@ -43,7 +44,18 @@ class App extends Component {
   onButtonSubmit = () => {
     // let { imgURL } = this.state;
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.imgURL)
-    .then(response => this.faceLocation(this.calculateFaceLocation(response)))
+    .then(response => {
+      if(response){
+        fetch(`${Server}image`,{
+          method: 'put',
+          headers: {'Content-Type' : 'application/json'},
+          body: JSON.stringify({id: this.state.c_user.id})
+        })
+        .then(res => res.json())
+        .then(data => this.setState( Object.assign(this.state.c_user, { entries: data})));
+      }
+      this.faceLocation(this.calculateFaceLocation(response));
+    })
     .catch(err => console.log('Catch',err));
   }
 
@@ -84,7 +96,7 @@ class App extends Component {
             <FaceRecognition box={this.state.box} imgURL={this.state.imgURL} />
           </div>
           : ( this.state.log === 'register' ? 
-              <Register onRouteChange={this.onRouteChange} /> : 
+              <Register getCurrentUser={this.getCurrentUser} onRouteChange={this.onRouteChange} /> : 
               <Login getCurrentUser={this.getCurrentUser} onRouteChange={this.onRouteChange} />
             )
       }

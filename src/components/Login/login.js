@@ -1,5 +1,6 @@
 import React from 'react';
 import './login.css';
+import Server from '../../server';
 
 class LoginForm extends React.Component {
 	constructor(props) {
@@ -16,7 +17,7 @@ class LoginForm extends React.Component {
 		this.setState({ inputPassword: e.target.value });
 	}
 	onSubmitLogin = () => {
-		fetch('http://localhost:3001/login',{
+		fetch(`${Server}login`,{
 			method: 'post',
 			headers: {'Content-Type' : 'application/json'},
 			body : JSON.stringify({
