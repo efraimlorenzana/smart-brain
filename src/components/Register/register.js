@@ -23,6 +23,10 @@ class Register extends React.Component {
 			if(data.success){
 				this.props.onRouteChange('home');
 				this.props.getCurrentUser(data.user);
+			} else {
+				let err = document.querySelector('#err');
+				err.innerHTML = `<strong>${data.err.severity} </strong> ` + data.err.detail;
+				err.classList.add('err');
 			}
 		})
 		.catch(console.log);
@@ -32,7 +36,7 @@ class Register extends React.Component {
 			<div id='login' className='mt-5 place-center'>
 				<div className='divstyle'>
 					<h2 className='hs'>Register</h2>
-					<hr />
+					<div id='err'></div>
 					<div className='px-5 pb-5'>
 						<div className="form-group">
 					    <label htmlFor="exampleInputEmail1">Fullname</label>

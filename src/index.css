@@ -16,3 +16,10 @@ body {
 	background-color: black;
 	color: white;
 }
+
+.err {
+	text-align: center;
+	padding: 10px 3px;
+	background-color: black;
+	color: red;
+}
